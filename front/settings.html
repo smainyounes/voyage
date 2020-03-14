@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="vendor/jquery/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <title>BoxDZ | Voyage</title>
+  </head>
+  <body class="d-flex flex-column bg-light">
+    
+    <nav class="navbar navbar-expand-md navbar-light bg-light shadow">
+      <a class="navbar-brand" href="#">Admin</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Trips</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Settings</a>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-secondary">Disconnect</button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container" id="page-content">
+      <div class="container p-4 my-5 shadow">
+            <nav >
+              <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+              </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active pt-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <h3 class="text-center">Changer Nom d'utilisateur</h3>
+                <form class="text-center">
+                  <div class="form-group w-75 text-center mx-auto">
+                    <input type="text" class="form-control text-center" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nom d'utilisateur">
+                  </div>
+                  <button class="btn btn-primary">Confirmer</button>
+                </form>
+              </div>
+              <div class="tab-pane fade pt-3" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <form class="text-center">
+                  <h3 class="text-center">Changer Mot de passe</h3>
+                  <div class="form-group w-75 text-center mx-auto">
+                    <input type="password" class="form-control text-center my-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Old Password">
+                    <input type="password" class="form-control text-center my-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="New Password">
+                    <input type="password" class="form-control text-center my-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Confirm Password">
+
+                  </div>
+                  <button class="btn btn-primary">Confirmer</button>
+                </form>
+              </div>
+            </div>
+          </div>
+    </div>
+
+    <footer class="py-4 shadow" id="sticky-footer">
+      <div class="container">
+        <p class="m-0 text-center">Copyright &copy; BoxDz 2020</p>
+      </div>
+    </footer>
+
+  </body>
+</html>
