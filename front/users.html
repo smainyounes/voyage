@@ -21,7 +21,7 @@
   </head>
   <body class="d-flex flex-column bg-light">
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+    <nav class="navbar navbar-expand-md navbar-light bg-light shadow">
       <a class="navbar-brand" href="#">Admin</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -50,7 +50,7 @@
 
     <div class="container" id="page-content">
       <div class="h1 text-center mt-2">Users</div>
-      <div class="container text-center my-4">
+      <div class="container text-center my-4 px-0">
         <a class="btn btn-primary btn-lg btn-block" href="#">Ajouter</a>
       </div>
       <table class="table table-hover table-bordered">
@@ -60,6 +60,7 @@
             <th scope="col">Nom</th>
             <th scope="col">Address</th>
             <th scope="col">Type</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -68,15 +69,38 @@
             <td>Mark</td>
             <td>Otto</td>
             <td>admin</td>
+            <td><button class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Delete</button></td>
           </tr>
           <tr>
             <th scope="row">2</th>
             <td>Jacob</td>
             <td>Thornton</td>
             <td>user</td>
+            <td><button class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Delete</button></td>
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Confirmation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            are u sure u want to delete user?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Yes</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <footer class="py-4 shadow" id="sticky-footer">
