@@ -1,0 +1,43 @@
+<?php 
+
+	/**
+	 * login
+	 */
+	class view_login 
+	{
+		
+		function __construct()
+		{
+			$this->Login();
+		}
+
+		public function Login()
+		{
+			?>
+
+			<div class="container" id="page-content">
+			  <div class="card mt-5 mx-auto" style="max-width: 400px;">
+			  <article class="card-body">
+			  <h4 class="card-title mb-4 mt-1">Sign in</h4>
+			     <form method="POST">
+			      <div class="form-group">
+			        <label>Username</label>
+			          <input name="username" class="form-control" placeholder="Username" type="text" required>
+			      </div> <!-- form-group// -->
+			      <div class="form-group">
+			        <label>Password</label>
+			          <input class="form-control" placeholder="******" type="password" name="password" required>
+			      </div> <!-- form-group// -->  
+			      <div class="form-group">
+			          <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+			      </div> <!-- form-group// -->                                                           
+			  </form>
+			  </article>
+			  </div> <!-- card.// -->
+			</div>
+
+			<?php
+		}
+	}
+
+ ?>

@@ -1,0 +1,7 @@
+DirectoryIndex public_html/test.php
+RewriteEngine on
+RewriteBase /voyage/public_html/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ index.php?cmd=$1  [QSA,L]

@@ -148,13 +148,15 @@
 			$this->db->query("SELECT * FROM users WHERE username = :username");
 			$this->db->bind("username", $_POST['username']);
 			$res = $this->db->single();
-
-			if (password_verify($_POST['password'], $res->password)) {
-				$_SESSION['user'] = $res->id_user;
-				return true;
+			if ($res) {
+				if (password_verify($_POST['password'], $res->password)) {
+					$_SESSION['user'] = $res->id_user;
+					return true;
+				}
 			}else{
 				return false;
 			}
+			
 		}
 
 		public function Logout()
