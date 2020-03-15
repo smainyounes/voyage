@@ -1,19 +1,30 @@
 <?php 
-include dirname(dirname(dirname(__FILE__)))."/backend/helpers/helpers.php";
-session_start();
 
-spl_autoload_register("myloader");
+	// public link (after hosting remove the /voyage/public_html)
+	define("PUBLIC_URL", "http://$_SERVER[HTTP_HOST]/voyage/public_html/");
 
-function myloader($class_name) 
-{
-    $filename = str_replace('_', DIRECTORY_SEPARATOR, strtolower($class_name)).'.class.php';
+	// backend link
+	define("BACKEND_URL", dirname(dirname(dirname(__FILE__)))."/backend/");
 
-    $file = dirname(dirname(dirname(__FILE__)))."/backend/".$filename;
+	// include helpers.php
+	include BACKEND_URL."/helpers/helpers.php";
 
-    if ( ! file_exists($file))
-    {
-        return FALSE;
-    }
-    include $file;
-}
+	// starting session
+	session_start();
+
+	// defining autoloader function
+	spl_autoload_register("myloader");
+
+	function myloader($class_name) 
+	{
+	    $filename = str_replace('_', DIRECTORY_SEPARATOR, strtolower($class_name)).'.class.php';
+
+	    $file = BACKEND_URL.$filename;
+
+	    if ( ! file_exists($file))
+	    {
+	        return FALSE;
+	    }
+	    include $file;
+	}
 ?>

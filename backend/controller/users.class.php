@@ -22,11 +22,14 @@
 			return $this->db->resultSet();
 		}
 
-		public function GetInfo($id_user)
+		public function GetInfo($id_user = null)
 		{
+			if (!isset($id_user)) {
+				$id_user = $_SESSION['user'];
+			}
 			$this->db->query("SELECT * FROM users WHERE id_user = :id");
 			$this->db->bind(":id", $id_user);
-			return $this->db->resultSet();
+			return $this->db->single();
 		}
 
 		public function CheckAdmin()
@@ -128,8 +131,12 @@
 
 		}
 
-		public function UpdateUsername($id_user)
+		public function UpdateUsername($id_user = null)
 		{
+			if (!isset($id_user)) {
+				$id_user = $_SESSION['user'];
+			}
+			
 			$this->db->query("UPDATE users SET username = :username WHERE id_user = :id");
 			$this->db->bind(":username", strip_tags($_POST['username']));
 			$this->db->bind(":id", $id_user);
