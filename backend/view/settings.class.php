@@ -26,7 +26,6 @@
 
 			?>
 
-			<div class="container" id="page-content">
 				<div class="container p-4 my-5 shadow">
 				      <nav >
 				        <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
@@ -58,7 +57,6 @@
 				        </div>
 				      </div>
 				</div>
-			</div>
 			
 
 			<?php

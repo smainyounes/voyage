@@ -15,7 +15,6 @@
 		{
 			?>
 
-			<div class="container" id="page-content">
 			  <div class="card mt-5 mx-auto" style="max-width: 400px;">
 			  <article class="card-body">
 			  <h4 class="card-title mb-4 mt-1">Sign in</h4>
@@ -34,7 +33,6 @@
 			  </form>
 			  </article>
 			  </div> <!-- card.// -->
-			</div>
 
 			<?php
 		}
