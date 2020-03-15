@@ -22,7 +22,7 @@
   <body class="d-flex flex-column bg-light">
     <?php if(isset($_SESSION['user'])): ?>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow">
-        <a class="navbar-brand" href="index.php">Admin</a>
+        <a class="navbar-brand" href="<?php echo(PUBLIC_URL) ?>">Admin</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

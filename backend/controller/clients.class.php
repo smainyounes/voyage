@@ -18,7 +18,7 @@
 
 		public function GetByTrip($id_trip)
 		{
-			$this->db->query("SELECT * FROM clients WHERE id_trip = :id");
+			$this->db->query("SELECT * FROM clients INNER JOIN users ON clients.id_user = users.id_user WHERE id_trip = :id");
 			$this->db->bind(":id", $id_trip);
 
 			return $this->db->resultSet();
@@ -32,8 +32,11 @@
 			return $this->db->resultSet();
 		}
 
-		public function GetByTripUser($id_trip, $id_user)
+		public function GetByTripUser($id_trip, $id_user = null)
 		{
+			if (isset($id_user)) {
+				$id_user = $_SESSION['user'];
+			}
 			$this->db->query("SELECT * FROM clients WHERE id_trip = :idtrip AND id_user = :iduser");
 			$this->db->bind(":iduser", $id_user);
 			$this->db->bind(":idtrip", $id_trip);
