@@ -18,8 +18,16 @@
 
 	switch ($page) {
 		case 'login':
+
+			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+				$control = new controller_users();
+				if ($control->Login()) {
+					header("Location: ".PUBLIC_URL);
+				}
+			}
+
 			include '../backend/includes/header.inc.php';
-			new view_login;
+			new view_login();
 			break;
 
 		case 'settings':
@@ -27,7 +35,6 @@
 				$page = "login";
 			}
 
-			$test = null;
 
 			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			    $user = new controller_users();
@@ -46,21 +53,125 @@
 			break;
 
 		case 'trips':
-			# code...
+			include '../backend/includes/header.inc.php';
+			$trips = new view_trips();
+
+			$trips->TripsHead();
+			$trips->LoadTrips();
+
 			break;
 
 		case 'addtrip':
-			# code...
+			include '../backend/includes/header.inc.php';
+
+
+			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+				if (isset($_POST['nom'])) {
+					$control = new controller_trips();
+					$test = $control->AddTrip();
+				}
+			}
+
+			$trips = new view_trips();
+			$trips->AddForm($test);
+
+			break;
+
+		case 'tripinfo':
+			$control = new controller_trips();
+
+			if (!isset($url[1]) || $url[1] == '' || !$control->Exists($url[1])) {
+				header("Location: ".PUBLIC_URL."error");
+			}
+
+			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+				if (isset($_POST['client'])) {
+					$control = new controller_users();
+					if ($control->CheckAdmin()) {
+						$control = new controller_clients();
+						$test = $control->Delete($_POST['client']);
+					}else{
+						$control = new controller_clients();
+						if ($control->Owner($_POST['client'])) {
+							$test = $control->Delete($_POST['client']);
+						}
+					}
+					
+				}
+			}
+
+			include '../backend/includes/header.inc.php';
+			$trip = new view_trips();
+			$trip->TripInfoHead($url[1]);
+
+			$view = new view_clients();
+			$view->LoadClients($url[1]);
+			break;
+		
+		case 'addclient':
+
+			$control = new controller_trips();
+
+			if (!isset($url[1]) || $url[1] == '' || !$control->Exists($url[1])) {
+				header("Location: ".PUBLIC_URL."error");
+			}
+
+			if ($control->Complet($url[1])) {
+				header("Location: ".PUBLIC_URL."trip/".$url[1]);
+			}
+
+			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+				$control = new controller_clients();
+				$test = $control->AddClient($url[1]);
+			}
+			
+			include '../backend/includes/header.inc.php';
+			$view = new view_clients($url[1]);
+			$view->AddForm($test);
+			
 			break;
 
 		case 'users':
-			# code...
+			$control = new controller_users();
+			if ($control->CheckAdmin()) {
+
+				if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+					if (isset($_POST['user'])) {
+						$test = $control->Delete($_POST['user']);
+					}
+				}
+
+				include '../backend/includes/header.inc.php';
+				$view = new view_users();
+				$view->LoadUsers();
+			}else{
+				header("Location: ".PUBLIC_URL."error");
+			}
 			break;
 
 		case 'adduser':
-			# code...
+			$control = new controller_users();
+			if ($control->CheckAdmin()) {
+
+				if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+					if (isset($_POST['username'])) {
+						$test = $control->AddUser();
+					}
+				}
+
+				include '../backend/includes/header.inc.php';
+				$view = new view_users();
+				$view->AddForm($test);
+			}else{
+				header("Location: ".PUBLIC_URL."error");
+			}
 			break;
-		
+
+		case 'dc':
+			$user = new controller_users();
+			$user->Logout();
+			header("Location: ".PUBLIC_URL);
+			break;
 		default:
 			include '../backend/includes/header.inc.php';
 			new view_notfound();

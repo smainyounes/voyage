@@ -58,6 +58,35 @@
 		 * Setters
 		 */
 
+		public function AddClient($id_trip)
+		{
+
+			// verify all inputs are not empty
+			foreach($_POST as $key => $value){
+		    	if(empty(trim($value))){
+		        	return false;
+		    	}
+			}
+
+			$this->db->query("INSERT INTO clients(id_user, id_trip, nom, prenom, phone, infos) VALUES(:user, :trip, :nom, :prenom, :phone, :infos)");
+
+			$this->db->bind(":user", $_SESSION['user']);
+			$this->db->bind(":trip", strip_tags($id_trip));
+			$this->db->bind(":nom", strip_tags($_POST['nom']));
+			$this->db->bind(":prenom", strip_tags($_POST['prenom']));
+			$this->db->bind(":phone", strip_tags($_POST['phone']));
+			$this->db->bind(":infos", strip_tags($_POST['infos']));
+
+			try {
+				$this->db->execute();
+				return true;
+			} catch (Exception $e) {
+				return false;
+			}
+
+		}
+
+
 		public function Delete($id_client)
 		{
 			$this->db->query("DELETE FROM clients WHERE id_client = :id");

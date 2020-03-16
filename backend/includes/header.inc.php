@@ -1,3 +1,12 @@
+<?php
+  $check = false;
+  if (isset($_SESSION['user'])) {
+    $user = new controller_users();
+    $check = $user->CheckAdmin();
+  }
+
+ ?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -35,9 +44,11 @@
             <li class="nav-item">
               <a class="nav-link" href="<?php echo(PUBLIC_URL) ?>trips">Trips</a>
             </li>
+            <?php if($check): ?>
             <li class="nav-item">
               <a class="nav-link" href="<?php echo(PUBLIC_URL) ?>users">Users</a>
             </li>
+            <?php endif; ?>
             <li class="nav-item">
               <a class="nav-link" href="<?php echo(PUBLIC_URL) ?>settings">Settings</a>
             </li>

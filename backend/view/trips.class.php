@@ -24,7 +24,7 @@
 		{
 			?>
 
-			<div class="col-lg-4 col-md-6 my-2">
+			<div class="col-lg-4 col-sm-6 my-2">
 			  <div class="card mx-auto h-100">
 			  	<?php if($this->trips->Complet($data->id_trip)): ?>
 			    <span class="notify-badge">Complet</span>
@@ -89,7 +89,7 @@
 			$data = $this->trips->GetById($id_trip);
 
 			?>
-			<?php if($data): ?>
+
 			<div class="h1 text-center mt-2">
 				<?php echo $data->nom; ?>
 			</div>
@@ -115,9 +115,7 @@
 			   </div>
 			  </div>
 			</div>
-			<?php else: ?>
-				<?php new view_notfound(); ?>
-			<?php endif; ?>
+
 			<?php
 		}
 

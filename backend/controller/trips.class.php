@@ -38,11 +38,26 @@
 
 		public function Stat($id_trip)
 		{
-			$this->db->query("SELECT nbrplace AS max, COUNT(id_client) AS nbr FROM trips, clients WHERE trips.id_trip = :id");
+			$this->db->query("SELECT nbrplace AS max, COUNT(clients.id_client) AS nbr FROM trips, clients WHERE trips.id_trip = :id AND clients.id_trip = :id");
 			$this->db->bind(":id", strip_tags($id_trip));
 			return $this->db->single();
 
 		}
+
+		public function Exists($id_trip)
+		{
+			$this->db->query("SELECT id_trip FROM trips WHERE id_trip = :id");
+			$this->db->bind(":id", strip_tags($id_trip));
+			$res = $this->db->single();
+
+			if ($res) {
+				return true;
+			}else{
+				return false;
+			}
+
+		}
+
 
 		/**
 		 * Setters
@@ -78,7 +93,6 @@
 				$this->db->execute();
 				return true;
 			} catch (Exception $e) {
-				echo "$e";
 				return false;
 			}
 

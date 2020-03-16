@@ -58,14 +58,14 @@
 				return false;
 			}
 
-			if ($_POST['password'] != $_POST['password2']) {
+			if ($_POST['pass1'] != $_POST['pass2']) {
 				return false;
 			}
 
 			$this->db->query("INSERT INTO users(username, password, address, type) VALUES(:username, :password, :address, :type)");
 
 			$this->db->bind(":username", $_POST['username']);
-			$this->db->bind(":password", password_hash($_POST['password'], PASSWORD_DEFAULT));
+			$this->db->bind(":password", password_hash($_POST['pass1'], PASSWORD_DEFAULT));
 			$this->db->bind(":address", $_POST['address']);
 			$this->db->bind(":type", $_POST['type']);
 
@@ -80,6 +80,11 @@
 
 		public function Delete($id_user)
 		{
+
+			if ($id_user == $_SESSION['user']) {
+				return false;
+			}
+
 			$this->db->query("DELETE FROM users WHERE id_user = :id");
 			$this->db->bind(":id", $id_user);
 
