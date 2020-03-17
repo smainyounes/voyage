@@ -1,12 +1,3 @@
-<?php
-  $check = false;
-  if (isset($_SESSION['user'])) {
-    $user = new controller_users();
-    $check = $user->CheckAdmin();
-  }
-
- ?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -54,6 +45,27 @@
             </li>
             <li class="nav-item">
               <a class="btn btn-secondary" href="<?php echo(PUBLIC_URL) ?>dc">Disconnect</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <?php else: ?>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow">
+        <a class="navbar-brand" href="<?php echo(PUBLIC_URL) ?>">BoxDz</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo(PUBLIC_URL) ?>">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo(PUBLIC_URL) ?>trips">Trips</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo(PUBLIC_URL) ?>contact">Contact</a>
             </li>
           </ul>
         </div>
