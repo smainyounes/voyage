@@ -79,7 +79,6 @@
 			$img = UploadPic($_FILES['pic']);
 			$sql = "INSERT INTO trips(`nom`, `prix`, `date_aller`, `date_retour`, `nbrplace`, `infos`, `img`) 
 				VALUES(:nom, :prix, :aller, :retour, :nbr, :info, :img)";
-			echo "$sql";
 			$this->db->query($sql);
 			$this->db->bind(":nom", strip_tags($_POST['nom']));
 			$this->db->bind(":prix", strip_tags($_POST['prix']));

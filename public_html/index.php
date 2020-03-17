@@ -53,10 +53,24 @@
 			break;
 
 		case 'trips':
+			$control = new controller_users();
+
+			if ($_SERVER['REQUEST_METHOD'] === 'POST' && $control->CheckAdmin()) {
+				if (isset($_POST['trip'])) {
+					$control = new controller_trips();
+
+					if (!$control->Exists($_POST['trip'])) {
+						header("Location: ".PUBLIC_URL."error");
+					}
+
+					$test = $control->Delete($_POST['trip']);
+				}
+			}
+
 			include '../backend/includes/header.inc.php';
 			$trips = new view_trips();
 
-			$trips->TripsHead();
+			$trips->TripsHead($test);
 			$trips->LoadTrips();
 
 			break;
@@ -172,6 +186,7 @@
 			$user->Logout();
 			header("Location: ".PUBLIC_URL);
 			break;
+			
 		default:
 			include '../backend/includes/header.inc.php';
 			new view_notfound();

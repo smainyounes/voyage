@@ -8,11 +8,13 @@
 
 		private $trips;
 		private $user;
+		private $check;
 
 		function __construct()
 		{
 			$this->trips = new controller_trips();
 			$this->user = new controller_users();
+			$this->check = $this->user->CheckAdmin();
 		}
 
 		/**
@@ -36,6 +38,9 @@
 			      <h5 class="card-title"><?php echo $data->nom; ?></h5>
 			      <p class="card-text"><?php echo shortenText($data->infos) ?></p>
 			      <h5 class=""><?php echo $data->prix." DA"; ?></h5>
+			      <div class="float-right">
+			      	<button class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" data-id="<?php echo($data->id_trip) ?>">Delete</button>
+			      </div>
 			    </div>
 			    <div class="card-footer font-weight-bold text-center">
 			        <?php echo "Du $data->date_aller à $data->date_retour"; ?>
@@ -60,19 +65,52 @@
 				}
 			}else{
 				$this->Nothing();
-			}			
+			}	
 
 			?>
 			</div>
+
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			  <div class="modal-dialog modal-dialog-centered" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalCenterTitle">Confirmation</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        are u sure u want to delete this trip?
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <form method="POST">
+			        	<input type="number" name="trip" id="trip" hidden>
+			        	<button class="btn btn-primary">Yes</button>
+			        </form>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+			<script type="text/javascript">
+				$('#exampleModalCenter').on('show.bs.modal', function (event) {
+				  var button = $(event.relatedTarget) // Button that triggered the modal
+				  var id = button.data('id') 
+				  $('#trip').val(id);
+				});
+			</script>
+
 			<?php
 		}
 
-		public function TripsHead()
+		public function TripsHead($msg)
 		{
 			?>
 
 			<div class="h1 text-center mt-2">Trips</div>
-			<?php if($this->user->CheckAdmin()): ?>
+			<?php if($this->check): ?>
 
 			<div class="container text-center my-4 px-0">
 			   <a class="btn btn-primary btn-lg btn-block" href="<?php echo(PUBLIC_URL.'addtrip') ?>">Ajouter</a>
@@ -81,6 +119,11 @@
 			<?php endif; ?>
 
 			<?php
+
+			if (isset($msg)) {
+				include '../backend/includes/alert.inc.php';
+			}
+
 		}
 
 		public function TripInfoHead($id_trip, $msg = null)
