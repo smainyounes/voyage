@@ -18,7 +18,7 @@
 
 		public function GetAll()
 		{
-			$this->db->query("SELECT * FROM trips");
+			$this->db->query("SELECT * FROM trips ORDER BY date_aller ASC");
 			return $this->db->resultSet();
 		}
 		
@@ -65,13 +65,18 @@
 
 		public function AddTrip()
 		{
+
+			if (empty($_POST['prix'])) {
+				$_POST['prix'] = -1;
+			}
+
 			// verify all inputs are not empty
 			foreach($_POST as $key => $value){
 		    	if(empty(trim($value))){
 		        	return false;
 		    	}
 			}
-
+			
 			if (!isset($_FILES['pic'])) {
 				return false;
 			}

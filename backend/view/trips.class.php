@@ -37,7 +37,9 @@
 			    <div class="card-body">
 			      <h5 class="card-title"><?php echo $data->nom; ?></h5>
 			      <p class="card-text"><?php echo shortenText($data->infos) ?></p>
+			      <?php if($data->prix > 0): ?>
 			      <h5 class=""><?php echo $data->prix." DA"; ?></h5>
+			  	  <?php endif; ?>
 			      <div class="float-right">
 			      	<button class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" data-id="<?php echo($data->id_trip) ?>">Delete</button>
 			      </div>
@@ -61,7 +63,12 @@
 
 			if ($all) {
 				foreach ($all as $data) {
-					$this->TripCard($data);
+					$date = new DateTime($data->date_aller);
+					$now = new DateTime();
+
+					if($this->check || $date >= $now) {
+						$this->TripCard($data);
+					}
 				}
 			}else{
 				$this->Nothing();
@@ -153,9 +160,11 @@
 			   <p>
 			   	<?php echo $data->infos; ?>
 			   </p>
+			   <?php if($data->prix > 0): ?>
 			   <div class="font-weight-bold">
 			   	<?php echo "Prix: $data->prix DA"; ?>
 			   </div>
+			   <?php endif; ?>
 			  </div>
 			</div>
 
@@ -183,13 +192,13 @@
 			    <div class="col">
 			      <div class="form-group">
 			        <label for="aller">date aller</label>
-			        <input type="date" class="form-control" id="aller" name="aller" required>
+			        <input type="date" min="<?php echo date('Y-m-d'); ?>" class="form-control" id="aller" name="aller" required>
 			      </div>
 			    </div>
 			    <div class="col">
 			      <div class="form-group">
 			        <label for="retout">date retour</label>
-			        <input type="date" class="form-control" id="retout" name="retour" required>
+			        <input type="date" min="<?php echo date('Y-m-d'); ?>" class="form-control" id="retout" name="retour" required>
 			      </div>
 			    </div>
 			  </div>
@@ -197,7 +206,7 @@
 			    <div class="col">
 			      <div class="form-group">
 			        <label for="prix">Prix</label>
-			        <input type="number" class="form-control" id="prix" name="prix" required>
+			        <input type="number" class="form-control" id="prix" name="prix">
 			      </div>
 			    </div>
 			    <div class="col">
@@ -208,14 +217,14 @@
 			    </div>
 			  </div>
 			  <div class="form-group custom-file">
-			  <input type="file" class="custom-file-input" id="customFile" name="pic" accept="image/*">
+			  <input type="file" class="custom-file-input" id="customFile" name="pic" accept="image/*" required>
 			  <label class="custom-file-label" for="customFile">Image voyage</label>
 			</div>
 
 
 			  <div class="form-group">
 			    <label for="description">Description</label>
-			    <textarea class="form-control" id="description" rows="3" name="infos"></textarea>
+			    <textarea class="form-control" id="description" rows="3" name="infos" required></textarea>
 			  </div>
 			  <div class="form-group text-center">
 			    <button class="btn btn-primary">Submit</button>
