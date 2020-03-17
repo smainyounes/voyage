@@ -1,4 +1,4 @@
-DirectoryIndex public_html/test.php
+DirectoryIndex public_html/index.php
 RewriteEngine on
 RewriteBase /voyage/public_html/
 
