@@ -20,11 +20,11 @@
 
 			?>
 
-			<div class="h1 text-center mt-2">Users</div>
+			<div class="h1 text-center mt-2 font-weight-bold text-white">Users</div>
 			<div class="container text-center my-4 px-0">
 			  <a class="btn btn-primary btn-lg btn-block" href="<?php echo(PUBLIC_URL."adduser") ?>">Ajouter</a>
 			</div>
-			<table class="table table-hover table-bordered">
+			<table class="table table-hover table-bordered bg-light">
 			  <thead>
 			    <tr>
 			      <th scope="col">#</th>
@@ -88,11 +88,11 @@
 		{
 			?>
 
-			<div class="h1 text-center my-4">Add new user</div>
+			<div class="h1 text-center my-4 font-weight-bold text-white">Add new user</div>
 			<?php if(isset($msg)): ?>
 				<?php include '../backend/includes/alert.inc.php'; ?>
 			<?php endif; ?>
-			<form class="border p-4" method="POST">
+			<form class="border p-4 font-weight-bold text-white" method="POST">
 				<div class="row">
 					<div class="col">
 						<div class="form-group">

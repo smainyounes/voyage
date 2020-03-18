@@ -8,6 +8,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo(PUBLIC_URL) ?>vendor/bootstrap/css/bootstrap.min.css">
 
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
     <!-- custom css -->
     <link rel="stylesheet" href="<?php echo(PUBLIC_URL) ?>css/custom.css">
 
@@ -21,6 +24,10 @@
   </head>
   <body class="d-flex flex-column bg-light">
     <?php if(isset($_SESSION['user'])): ?>
+      <?php 
+        $control = new controller_users();
+        $check = $control->CheckAdmin();
+       ?>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow">
         <a class="navbar-brand" href="<?php echo(PUBLIC_URL) ?>">Admin</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,8 +57,11 @@
         </div>
       </nav>
     <?php else: ?>
+      
       <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow">
-        <a class="navbar-brand" href="<?php echo(PUBLIC_URL) ?>">BoxDz</a>
+        <a class="navbar-brand" href="<?php echo(PUBLIC_URL) ?>">
+          <img src="<?php echo(PUBLIC_URL.'img/boxdzlogo.png') ?>" class="img-fluid" width="60px">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -71,5 +81,5 @@
         </div>
       </nav>
     <?php endif; ?>
-    <div class="container" id="page-content">
+    <div class="container bg-soft-dark" id="page-content">
     

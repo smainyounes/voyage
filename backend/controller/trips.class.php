@@ -58,6 +58,17 @@
 
 		}
 
+		public function Search($val)
+		{
+			if ($val === '') {
+				return $this->GetAll();
+			}
+
+			$this->db->query("SELECT * FROM trips WHERE nom LIKE :val OR infos LIKE :val ORDER BY date_aller ASC");
+			$this->db->bind(":val", "%{$val}%");
+			return $this->db->resultSet();
+		}
+
 
 		/**
 		 * Setters

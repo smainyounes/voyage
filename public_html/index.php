@@ -10,11 +10,24 @@
 		$page = $url[0];
 	}
 
+	if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+		if (isset($_GET['search'])) {
+			header("Location: ".PUBLIC_URL."search/".urlencode($_GET['search']));
+		}
+		
+	}
+
 	$test = null;
 
 	if (!isset($_SESSION['user'])) {
 		switch ($page) {
 			case 'home':
+				include '../backend/includes/header.inc.php';
+				new view_search();
+
+				break;
+
+			case 'trips':
 				include '../backend/includes/header.inc.php';
 				$trips = new view_trips();
 
@@ -36,9 +49,34 @@
 				break;
 
 			case 'tripinfo':
+				$control = new controller_trips();
+
+				if (!isset($url[1]) || $url[1] == '' || !$control->Exists($url[1])) {
+					header("Location: ".PUBLIC_URL."error");
+				}
+
+				include '../backend/includes/header.inc.php';
+				$trip = new view_trips();
+				$trip->TripInfoHead($url[1]);
 
 				break;
 			
+			case 'contact':
+				include '../backend/includes/header.inc.php';
+
+				break;
+
+			case 'search':
+				include '../backend/includes/header.inc.php';
+				if (!isset($url[1])) {
+					$url[1] = '';
+				}
+				
+				$view = new view_trips();
+				$view->Search(urldecode($url[1]));
+
+				break;
+
 			default:
 				include '../backend/includes/header.inc.php';
 				new view_notfound();
@@ -81,7 +119,8 @@
 
 				new view_settings($test);
 				break;
-
+			
+			case 'home':
 			case 'trips':
 				$control = new controller_users();
 

@@ -33,7 +33,7 @@
 
 			?>
 			<div class="container text-center my-4 px-0">
-			   <div class="h1 text-center">Clients</div>
+			   <div class="h1 text-center font-weight-bold text-white">Clients</div>
 				<?php if(!$this->trips->Complet($id_trip)): ?>
 			   <a class="btn btn-primary btn-lg btn-block" href="<?php echo(PUBLIC_URL.'addclient/'.$id_trip) ?>">Ajouter</a>
 				<?php endif; ?>
@@ -42,7 +42,7 @@
 				<?php echo "Places $stat->nbr / $stat->max"; ?>
 			</div>
 			<?php if($data): ?>
-			<table class="table table-hover table-bordered">
+			<table class="table table-hover table-bordered bg-light">
 			  <thead>
 			    <tr>
 			      <th scope="col">#</th>
@@ -119,13 +119,13 @@
 		{
 			?>
 
-			<div class="h1 text-center my-4">Add Clients</div>
+			<div class="h1 text-center font-weight-bold text-white my-4">Add Clients</div>
 
 			<?php if(isset($msg)): ?>
 				<?php include '../backend/includes/alert.inc.php'; ?>
 			<?php endif; ?>
 
-			<form class="border p-4" method="POST">
+			<form class="border p-4 font-weight-bold text-white" method="POST">
 			  <div class="row">
 			    <div class="col">
 			      <div class="form-group">
