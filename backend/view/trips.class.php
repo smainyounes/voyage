@@ -123,6 +123,7 @@
 		{
 			?>
 			<div class="h1 text-center font-weight-bold text-white">Result</div>
+			<?php new view_search('trip', $val) ?>
 			<div class="row">
 			<?php
 

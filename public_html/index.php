@@ -23,7 +23,7 @@
 		switch ($page) {
 			case 'home':
 				include '../backend/includes/header.inc.php';
-				new view_search();
+				new view_search($page);
 
 				break;
 
