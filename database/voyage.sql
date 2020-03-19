@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 14, 2020 at 03:51 PM
+-- Generation Time: Mar 19, 2020 at 01:11 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -34,8 +34,29 @@ CREATE TABLE `clients` (
   `id_trip` int(11) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
-  `phone` varchar(15) NOT NULL
+  `phone` varchar(15) NOT NULL,
+  `infos` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `email` varchar(50) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `address` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`email`, `phone`, `address`) VALUES
+('test@test.com', '123456789', 'blida blida');
 
 -- --------------------------------------------------------
 
@@ -45,14 +66,14 @@ CREATE TABLE `clients` (
 
 CREATE TABLE `trips` (
   `id_trip` int(11) NOT NULL,
-  `nom` varchar(50) NOT NULL,
+  `nom` varchar(50) CHARACTER SET latin1 NOT NULL,
   `prix` int(11) NOT NULL,
-  `date-aller` varchar(50) NOT NULL,
-  `date-retour` varchar(50) NOT NULL,
+  `date_aller` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `date_retour` varchar(50) CHARACTER SET latin1 NOT NULL,
   `nbrplace` int(11) NOT NULL,
-  `infos` text NOT NULL,
-  `img` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `infos` text CHARACTER SET latin1 NOT NULL,
+  `img` varchar(50) CHARACTER SET latin1 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -73,7 +94,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `username`, `password`, `address`, `type`) VALUES
-(1, 'test', '$2y$10$zLa.cP8a2p5uIy1V.rA2pu1bM5RBD4K.jZn./NPv0InBiGZ57MKeu', 'ergerg', 'admin');
+(1, 'admin', '$2y$10$zgFRE8OWhDeKAy0M4j2IMusQ/pw3Nq1cvs/QDuMDYpkLRdoPocnqe', 'ergerg', 'admin'),
+(3, 'test', '$2y$10$81HLrUIejfRoweLZxEbSz.VjjdpYkke8.vkfyw7pSrvzXz7mX1Esi', 'zeiurfhzefiuh', 'user');
 
 --
 -- Indexes for dumped tables
@@ -106,19 +128,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `trips`
 --
 ALTER TABLE `trips`
-  MODIFY `id_trip` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_trip` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
