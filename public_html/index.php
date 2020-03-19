@@ -115,6 +115,11 @@
 				    if (isset($_POST['old'])) {
 				    	$test = $user->UpdatePassword();
 				    }
+
+				    if (isset($_POST['email'])) {
+				    	$control = new controller_contact();
+				    	$test = $control->UpdateInfos();
+				    }
 				}
 
 				include '../backend/includes/header.inc.php';
