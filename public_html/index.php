@@ -257,6 +257,17 @@
 				}
 				break;
 
+			case 'search':
+				include '../backend/includes/header.inc.php';
+				if (!isset($url[1])) {
+					$url[1] = '';
+				}
+				
+				$view = new view_trips();
+				$view->Search(urldecode($url[1]));
+				
+				break;
+
 			case 'dc':
 				$user = new controller_users();
 				$user->Logout();

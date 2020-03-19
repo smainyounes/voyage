@@ -62,6 +62,7 @@
 
 		public function LoadTrips()
 		{
+			new view_search("trip");
 			?>
 			<div class="row">
 			<?php
@@ -123,6 +124,14 @@
 		{
 			?>
 			<div class="h1 text-center font-weight-bold text-white">Result</div>
+			<?php if($this->check): ?>
+
+			<div class="container text-center my-4 px-0">
+			   <a class="btn btn-primary btn-lg btn-block" href="<?php echo(PUBLIC_URL.'addtrip') ?>">Ajouter</a>
+			</div>
+
+			<?php endif; ?>
+			
 			<?php new view_search('trip', $val) ?>
 			<div class="row">
 			<?php
