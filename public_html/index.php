@@ -64,6 +64,8 @@
 			case 'contact':
 				include '../backend/includes/header.inc.php';
 
+				$view = new view_contact();
+				$view->ContactInfo();
 				break;
 
 			case 'search':
