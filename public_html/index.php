@@ -59,6 +59,9 @@
 				$trip = new view_trips();
 				$trip->TripInfoHead($url[1]);
 
+				$control = new view_contact();
+				$control->ContactInfo();
+
 				break;
 			
 			case 'contact':

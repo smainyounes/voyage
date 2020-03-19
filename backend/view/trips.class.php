@@ -220,7 +220,7 @@
 			<div class="h1 text-center font-weight-bold text-white mt-2">
 				<?php echo $data->nom; ?>
 			</div>
-			<div class="row">
+			<div class="row my-4">
 			  <div class="col-md-7">
 			    <img src="<?php echo(PUBLIC_URL.'img/'.$data->img) ?>" class="img-fluid">
 			  </div>

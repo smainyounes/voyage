@@ -24,7 +24,7 @@
 					<div class="row my-2 py-4">
 						<div class="col-md-6">
 							<div class="h2 text-center font-weight-bold text-white">Map</div>
-                    		<iframe width="100%" height="100%" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12829.021188116936!2d2.8610017!3d36.499699!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x366fff7331a6cabc!2sFirmwareDZ!5e0!3m2!1sfr!2sdz!4v1575897518342!5m2!1sfr!2sdz" style="border:0;" allowfullscreen=""></iframe>
+                    		<iframe width="100%" height="80%" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12829.021188116936!2d2.8610017!3d36.499699!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x366fff7331a6cabc!2sFirmwareDZ!5e0!3m2!1sfr!2sdz!4v1575897518342!5m2!1sfr!2sdz" style="border:0;" allowfullscreen=""></iframe>
 						</div>
 
 						<div class="col-md-6 pt-5 mt-5 font-weight-bold text-white">
