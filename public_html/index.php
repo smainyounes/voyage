@@ -201,6 +201,27 @@
 				$view->LoadClients($url[1]);
 				break;
 			
+			case 'edit':
+				$control = new controller_users();
+				if (!$control->CheckAdmin()){
+					header("Location: ".PUBLIC_URL."error");
+				}
+
+				$control = new controller_trips();
+				if (!isset($url[1]) || $url[1] == '' || !$control->Exists($url[1])) {
+					header("Location: ".PUBLIC_URL."error");
+				}
+
+				if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+					$test = $control->Edit($url[1]);
+				}
+
+				include '../backend/includes/header.inc.php';
+				$view = new view_trips();
+				$view->EditForm($url[1], $test);
+
+				break;
+
 			case 'addclient':
 
 				$control = new controller_trips();

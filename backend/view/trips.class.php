@@ -48,6 +48,7 @@
 			  	  <?php if($this->check): ?>
 			      <div class="float-right">
 			      	<button class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" data-id="<?php echo($data->id_trip) ?>">Delete</button>
+			      	<a class="btn btn-warning" href="<?php echo(PUBLIC_URL) ?>edit/<?php echo($data->id_trip) ?>">Edit</a>
 			      </div>
 			  	  <?php endif; ?>
 			    </div>
@@ -302,6 +303,82 @@
 			  <div class="form-group">
 			    <label for="description">Description</label>
 			    <textarea class="form-control" id="description" rows="3" name="infos" required></textarea>
+			  </div>
+			  <div class="form-group text-center">
+			    <button class="btn btn-primary">Submit</button>
+			  </div>
+			</form>
+
+			<?php
+		}
+
+		public function EditForm($id_trip, $msg)
+		{
+			$data = $this->trips->GetById($id_trip);
+
+			?>
+
+			<div class="h1 text-center font-weight-bold text-white my-4">Edit Trip</div>
+			
+			<?php 
+				if (isset($msg)) {
+					include '../backend/includes/alert.inc.php';
+				}
+			 ?>
+
+			<form class="border p-4 font-weight-bold text-white" method="POST" enctype="multipart/form-data">
+				<div class="row">
+					<div class="col-md-8">
+						<img src="<?php echo(PUBLIC_URL.'img/'.$data->img) ?>" class="img-fluid">
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+						  <label for="nom">Trip Name</label>
+						  <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom" value="<?php echo($data->nom) ?>" required>
+						</div>
+
+						<div class="row">
+						  <div class="col">
+						    <div class="form-group">
+						      <label for="aller">date aller</label>
+						      <input type="date" min="<?php echo date('Y-m-d'); ?>" class="form-control" id="aller" name="aller" value="<?php echo($data->date_aller) ?>" required>
+						    </div>
+						  </div>
+						  <div class="col">
+						    <div class="form-group">
+						      <label for="retout">date retour</label>
+						      <input type="date" min="<?php echo date('Y-m-d'); ?>" class="form-control" id="retout" name="retour" value="<?php echo($data->date_retour) ?>" required>
+						    </div>
+						  </div>
+						</div>
+
+					</div>
+				</div>
+
+			  <div class="row">
+			    <div class="col">
+			      <div class="form-group">
+			        <label for="prix">Prix</label>
+			        <input type="number" class="form-control" id="prix" name="prix" value="<?php if($data->prix > 0) echo($data->prix); ?>">
+			      </div>
+			    </div>
+			    <div class="col">
+			      <div class="form-group">
+			        <label for="max">Nombre max</label>
+			        <input type="number" class="form-control" id="max" name="nbr" required value="<?php echo($data->nbrplace) ?>">
+			      </div>
+			    </div>
+			  </div>
+
+			  <div class="form-group custom-file">
+			  <input type="file" class="custom-file-input" id="customFile" name="pic" accept="image/*">
+			  <label class="custom-file-label" for="customFile">Image voyage</label>
+			  </div>
+
+
+			  <div class="form-group">
+			    <label for="description">Description</label>
+			    <textarea class="form-control" id="description" rows="3" name="infos" required><?php echo $data->infos; ?></textarea>
 			  </div>
 			  <div class="form-group text-center">
 			    <button class="btn btn-primary">Submit</button>

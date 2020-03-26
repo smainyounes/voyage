@@ -143,6 +143,53 @@
 		}
 
 
+		public function Edit($id_trip)
+		{
+			if (empty($_POST['prix'])) {
+				$_POST['prix'] = -1;
+			}
+
+			// verify all inputs are not empty
+			foreach($_POST as $key => $value){
+		    	if(empty(trim($value))){
+		        	return false;
+		    	}
+			}
+
+			$conc = "";
+
+			if ($_FILES['pic']['name'] != "") {
+				// get old pic link
+				$this->db->query("SELECT img FROM trips WHERE id_trip = :id");
+				$this->db->bind(":id", $id_trip);
+				$res = $this->db->single();
+
+				// delete old pic
+				DeletePic("img/$res->img");
+				$img = UploadPic($_FILES['pic']);
+				$conc = ", img = '".$img."'";
+			}
+
+			$this->db->query("UPDATE trips SET nom = :nom, prix = :prix, date_aller = :aller, date_retour = :retour, nbrplace = :nbr, infos = :infos $conc WHERE id_trip = :id");
+
+			$this->db->bind(":nom", strip_tags($_POST['nom']));
+			$this->db->bind(":prix", strip_tags($_POST['prix']));
+			$this->db->bind(":aller", strip_tags($_POST['aller']));
+			$this->db->bind(":retour", strip_tags($_POST['retour']));
+			$this->db->bind(":nbr", strip_tags($_POST['nbr']));
+			$this->db->bind(":infos", strip_tags($_POST['infos']));
+			$this->db->bind(":id", $id_trip);
+
+			try {
+				$this->db->execute();
+				return true;
+			} catch (Exception $e) {
+				DeletePic("img/$img");
+				return false;
+			}
+
+		}
+
 	}
 
  ?>
