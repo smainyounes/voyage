@@ -77,6 +77,9 @@
             <li class="nav-item">
               <a class="nav-link" href="<?php echo(PUBLIC_URL) ?>contact">Contact</a>
             </li>
+            <li class="nav-item">
+              <a class="btn btn-secondary" href="<?php echo(PUBLIC_URL) ?>login">Login</a>
+            </li>
           </ul>
         </div>
       </nav>
