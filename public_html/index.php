@@ -36,13 +36,16 @@
 				break;
 
 			case 'login':
-				
+
 				if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					$control = new controller_users();
-					if ($control->Login()) {
+					if (isset($_POST['token']) && $_POST['token'] === $_SESSION['token'] && $control->Login()) {
+						unset($_SESSION['token']);
 						header("Location: ".PUBLIC_URL);
 					}
 				}
+				
+				$_SESSION['token'] = token();
 
 				include '../backend/includes/header.inc.php';
 				new view_login();

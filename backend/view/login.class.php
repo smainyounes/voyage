@@ -29,7 +29,8 @@
 			      </div> <!-- form-group// -->  
 			      <div class="form-group">
 			          <button type="submit" class="btn btn-primary btn-block"> Login  </button>
-			      </div> <!-- form-group// -->                                                           
+			      </div> <!-- form-group// -->
+			      <input type="text" name="token" value="<?php echo($_SESSION['token']) ?>" hidden>                                                           
 			  </form>
 			  </article>
 			  </div> <!-- card.// -->
